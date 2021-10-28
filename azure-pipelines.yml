@@ -1,10 +1,16 @@
-resources:
-  repositories:
-    - repository: templates
-      type: github
-      name: Ecosistema-Digital-Bci/devops-resources
-      endpoint: Ecosistema-Digital-Bci
 
-jobs:
-- template: azure-pipeline.yaml@templates  # Template reference30
+  pool:
+    vmImage: 'ubuntu-latest'
+  variables:
+    SONAR: $(SONAR_TOKEN)
+  steps:
+    
+  - script: ./gradlew clean build -x test -Pbranch=develop
+    displayName: 'Build Project'
+    
+  - script: ./gradlew test -Pbranch=develop
+    displayName: 'Unit Testing'
+  
+  - script: ./gradlew sonarqube -Dsonar.login=$(SONAR_TOKEN) -Pbranch=develop
+    displayName: 'Analyzing and generating report'
 
