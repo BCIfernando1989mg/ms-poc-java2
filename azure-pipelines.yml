@@ -4,20 +4,22 @@
   variables:
     SONAR: $(SONAR_TOKEN)
   steps:
-    
   - task: SonarCloudPrepare@1
     inputs:
       SonarCloud: 'sonarcloud'
-      organization: 'BCIfernando1989mg'
+      organization: 'bcifernando1989mg'
       scannerMode: 'Other'
       extraProperties: 'sonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml'
-    
-  - script: ./gradlew clean build -x test -Pbranch=develop
+
+  - script: ./gradlew clean build -x test -Pbranch=main
     displayName: 'Build Project'
     
-  - script: ./gradlew test -Pbranch=develop
+  - script: ./gradlew test -Pbranch=main
     displayName: 'Unit Testing'
   
-  - script: ./gradlew sonarqube -Dsonar.login=$(SONAR_TOKEN) -Pbranch=develop
+  - script: ./gradlew sonarqube -Dsonar.login=$(SONAR_TOKEN) -Pbranch=main
     displayName: 'Analyzing and generating report'
+  - task: SonarCloudPublish@1
+    inputs:
+      pollingTimeoutSec: '300'
 
