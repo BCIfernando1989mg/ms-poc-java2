@@ -4,12 +4,12 @@
   variables:
     SONAR: $(SONAR_TOKEN)
   steps:
-  - task: SonarCloudPrepare@1
-    inputs:
-      SonarCloud: 'sonarcloud'
-      organization: 'bcifernando1989mg'
-      scannerMode: 'Other'
-      extraProperties: 'sonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml'
+  #- task: SonarCloudPrepare@1
+  #  inputs:
+  #    SonarCloud: 'sonarcloud'
+  #    organization: 'bcifernando1989mg'
+  #    scannerMode: 'Other'
+  #    extraProperties: 'sonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml'
 
   - script: ./gradlew clean build -x test -Pbranch=main
     displayName: 'Build Project'
@@ -17,9 +17,17 @@
   - script: ./gradlew test -Pbranch=main
     displayName: 'Unit Testing'
   
-  - script: ./gradlew sonarqube -Dsonar.login=$(SONAR_TOKEN) -Pbranch=main
-    displayName: 'Analyzing and generating report'
-  - task: SonarCloudPublish@1
-    inputs:
-      pollingTimeoutSec: '300'
+  #- script: ./gradlew sonarqube -Dsonar.login=$(SONAR_TOKEN) -Pbranch=main
+  #  displayName: 'Analyzing and generating report'
+  #- task: SonarCloudPublish@1
+  #  inputs:
+  #    pollingTimeoutSec: '300'
 
+- task: Application security testing@2021
+  inputs:
+    projectName: 'ms-poc-java2'
+    enableProxy: false
+    enableSastScan: true
+    CheckmarxService: 'checkmarx'
+    enableDependencyScan: true
+    scaVulnerabilityThreshold: true
