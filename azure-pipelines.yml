@@ -7,7 +7,7 @@
   - task: SonarCloudPrepare@1
     inputs:
       SonarCloud: 'sonarcloud'
-      organization: 'BCIfernando1989mg'
+      organization: 'bcifernando1989mg'
       scannerMode: 'Other'
       extraProperties: 'sonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml'
 
