@@ -23,11 +23,11 @@
   #  inputs:
   #    pollingTimeoutSec: '300'
 
-- task: Application security testing@2021
-  inputs:
-    projectName: 'ms-poc-java2'
-    enableProxy: false
-    enableSastScan: true
-    CheckmarxService: 'checkmarx'
-    enableDependencyScan: true
-    scaVulnerabilityThreshold: true
+  - task: Application security testing@2021
+    inputs:
+      projectName: 'ms-poc-java2'
+      enableProxy: false
+      enableSastScan: true
+      CheckmarxService: 'checkmarx'
+      enableDependencyScan: true
+      scaVulnerabilityThreshold: true
