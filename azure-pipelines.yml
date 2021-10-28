@@ -1,0 +1,10 @@
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: Ecosistema-Digital-Bci/devops-resources
+      endpoint: Ecosistema-Digital-Bci
+
+jobs:
+- template: azure-pipeline.yaml@templates  # Template reference30
+
