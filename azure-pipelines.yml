@@ -28,6 +28,6 @@
       projectName: 'ms-poc-java2'
       enableProxy: false
       enableSastScan: true
-      CheckmarxService: 'checkmarx'
+      CheckmarxService: 'Checkmarx SAST'
       enableDependencyScan: true
       scaVulnerabilityThreshold: true
