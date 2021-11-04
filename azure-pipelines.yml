@@ -29,5 +29,4 @@
       enableProxy: false
       enableSastScan: true
       CheckmarxService: 'Checkmarx SAST'
-      enableDependencyScan: true
-      scaVulnerabilityThreshold: true
+      enableDependencyScan: false
