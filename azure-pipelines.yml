@@ -30,4 +30,6 @@
       enableSastScan: true
       CheckmarxService: 'Checkmarx SAST'
       fullTeamName: 'CxServer'
-      enableDependencyScan: false
+      enableDependencyScan: true
+      dependencyServerURL: 'checkmarx sca'
+      scaTeam: 'CxServer'
