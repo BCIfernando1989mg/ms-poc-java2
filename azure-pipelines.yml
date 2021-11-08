@@ -35,5 +35,6 @@
       azureResourceGroup: 'ECORG3DSR-RG-AKSAPI001'
       kubernetesCluster: 'ECO-API-DSR-001'
       command: 'get'
+      arguments: 'all'
       useClusterAdmin: true
 
