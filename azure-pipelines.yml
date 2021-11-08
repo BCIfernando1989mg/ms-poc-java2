@@ -31,8 +31,8 @@
   - task: Kubernetes@1
     inputs:
       connectionType: 'Azure Resource Manager'
-      azureSubscriptionEndpoint: 'dev-aks'
+      azureSubscriptionEndpoint: 'aksdev'
       azureResourceGroup: 'ECORG3DSR-RG-AKSAPI001'
       kubernetesCluster: 'ECO-API-DSR-001'
       command: 'get'
-      arguments: 'nodes'
+      useClusterAdmin: true
