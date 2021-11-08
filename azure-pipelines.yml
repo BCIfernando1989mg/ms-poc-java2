@@ -11,25 +11,25 @@
   #    scannerMode: 'Other'
   #    extraProperties: 'sonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml'
 
-  - script: ./gradlew clean build -x test -Pbranch=main
-    displayName: 'Build Project'
-    
-  - script: ./gradlew test -Pbranch=main
-    displayName: 'Unit Testing'
-  
-  #- script: ./gradlew sonarqube -Dsonar.login=$(SONAR_TOKEN) -Pbranch=main
-  #  displayName: 'Analyzing and generating report'
-  #- task: SonarCloudPublish@1
-  #  inputs:
-  #    pollingTimeoutSec: '300'
+  #- script: ./gradlew clean build -x test -Pbranch=main
+  #  displayName: 'Build Project'
 
-  - task: Application security testing@2021
+  #- task: Application security testing@2021
+  #  inputs:
+  #    projectName: 'ms-poc-java2'
+  #    enableProxy: false
+  #    enableSastScan: true
+  #    CheckmarxService: 'Checkmarx SAST'
+  #    fullTeamName: 'CxServer'
+  #    enableDependencyScan: true
+  #    dependencyServerURL: 'checkmarx sca'
+  #    scaTeam: 'CxServer'
+  
+  - task: Kubernetes@1
     inputs:
-      projectName: 'ms-poc-java2'
-      enableProxy: false
-      enableSastScan: true
-      CheckmarxService: 'Checkmarx SAST'
-      fullTeamName: 'CxServer'
-      enableDependencyScan: true
-      dependencyServerURL: 'checkmarx sca'
-      scaTeam: 'CxServer'
+      connectionType: 'Azure Resource Manager'
+      azureSubscriptionEndpoint: 'dev-aks'
+      azureResourceGroup: 'ECORG3DSR-RG-AKSAPI001'
+      kubernetesCluster: 'ECO-API-DSR-001'
+      command: 'get'
+      arguments: 'nodes'
