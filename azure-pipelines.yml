@@ -25,6 +25,9 @@
   #    dependencyServerURL: 'checkmarx sca'
   #    scaTeam: 'CxServer'
   
+  - script: kubectl get nodes
+    displayName: 'nodes'
+
   - task: Kubernetes@1
     inputs:
       connectionType: 'Azure Resource Manager'
