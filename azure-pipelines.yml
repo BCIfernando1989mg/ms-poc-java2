@@ -20,9 +20,17 @@
       enableProxy: false
       enableSastScan: true
       CheckmarxService: 'Checkmarx SAST'
+      vulnerabilityThreshold: true
+      high: '0'
+      medium: '0'
+      low: '6'
       fullTeamName: 'CxServer'
       enableDependencyScan: true
       dependencyServerURL: 'checkmarx sca'
+      scaVulnerabilityThreshold: true
+      scaHigh: '0'
+      scaMedium: '0'
+      scaLow: '12'
       scaTeam: 'CxServer'
 
   #- task: Kubernetes@1
