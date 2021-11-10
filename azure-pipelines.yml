@@ -22,16 +22,26 @@ stages:
               ArtifactName: 'ms-poc-java2'
               publishLocation: 'Container'
               StoreAsTar: true
-
-          - task: apim@5
-            displayName: 'API Management - Create/Update API '
-            inputs:
-              ConnectedServiceNameARM: 'ECORG3DSRSUB (e16b0f56-9874-4393-a994-bc3c995d2012)'
-              ResourceGroupName: 'ECORG3DSR-RG-AAPIM-001'
-              ApiPortalName: 'ECORG3DSR-AAPIM-001'
-              UseProductCreatedByPreviousTask: false
-              product1: apitest
-              swaggerlocation: 'https://petstore.swagger.io/v2/swagger.json'
-              targetapi: petstore
-              DisplayName: 'petsotre-name'
-              pathapi: petstore
+  - stage: DeployDev
+    displayName: 'Deploy to Dev'
+    jobs:
+      - deployment: 
+        pool:
+          vmImage: 'windows-latest'
+        environment: 'Dev'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: apim@5
+                  displayName: 'API Management - Create/Update API '
+                  inputs:
+                    ConnectedServiceNameARM: 'ECORG3DSRSUB (e16b0f56-9874-4393-a994-bc3c995d2012)'
+                    ResourceGroupName: 'ECORG3DSR-RG-AAPIM-001'
+                    ApiPortalName: 'ECORG3DSR-AAPIM-001'
+                    UseProductCreatedByPreviousTask: false
+                    product1: apitest
+                    swaggerlocation: 'https://petstore.swagger.io/v2/swagger.json'
+                    targetapi: petstore
+                    DisplayName: 'petsotre-name'
+                    pathapi: petstore
