@@ -9,7 +9,6 @@ plugins {
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
-def branch = branch
 
 configurations {
 	compileOnly {
@@ -37,8 +36,7 @@ sonarqube {
   properties {
     property "sonar.projectKey", "BCIfernando1989mg_ms-poc-java2"
     property "sonar.organization", "bcifernando1989mg"
-    property "sonar.host.url", "https://sonarcloud.io"
-    property "sonar.branch", branch	
+    property "sonar.host.url", "https://sonarcloud.io"	
  }
 }
 
