@@ -45,3 +45,4 @@ stages:
                     targetapi: petstore
                     DisplayName: 'petsotre-name'
                     pathapi: petstore
+                    subscriptionRequired: false
