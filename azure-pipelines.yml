@@ -34,6 +34,14 @@ stages:
           runOnce:
             deploy:
               steps:
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                    buildType: 'current'
+                    targetPath: '$(Pipeline.Workspace)'
+                
+                - script: ls $(Pipeline.Workspace)
+                  name: listar
+
                 - task: Kubernetes@1
                   inputs:
                     connectionType: 'Azure Resource Manager'
