@@ -1,45 +1,22 @@
+stages:
+  - stage: Build
+    jobs:
+      job: BuildMS
+      variables:
+        buildConfiguration: 'Release'
+      pool:
+        name: 'Default'
+      steps:
+        - script: ./gradlew build
+          name: build
 
-  pool:
-    name: 'Default'
-  variables:
-    SONAR: $(SONAR_TOKEN)
-  steps:
-  #- task: SonarCloudPrepare@1
-  #  inputs:
-  #    SonarCloud: 'sonarcloud'
-  #    organization: 'bcifernando1989mg'
-  #    scannerMode: 'Other'
-  #    extraProperties: 'sonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml'
-
-  #- script: ./gradlew clean build -x test -Pbranch=main
-  #  displayName: 'Build Project'
-
-  - task: Application security testing@2021
-    inputs:
-      projectName: 'ms-poc-java2'
-      enableProxy: false
-      enableSastScan: true
-      CheckmarxService: 'Checkmarx SAST'
-      vulnerabilityThreshold: true
-      high: '0'
-      medium: '0'
-      low: '6'
-      fullTeamName: 'CxServer'
-      enableDependencyScan: true
-      dependencyServerURL: 'checkmarx sca'
-      scaVulnerabilityThreshold: true
-      scaHigh: '0'
-      scaMedium: '0'
-      scaLow: '12'
-      scaTeam: 'CxServer'
-
-  #- task: Kubernetes@1
-  #  inputs:
-  #    connectionType: 'Azure Resource Manager'
-  #    azureSubscriptionEndpoint: 'aksdev-sp'
-  #    azureResourceGroup: 'ECORG3DSR-RG-AKSAPI001'
-  #    kubernetesCluster: 'ECO-API-DSR-001'
-  #    command: 'get'
-  #    arguments: 'all'
-  #    useClusterAdmin: true
+      #- task: Kubernetes@1
+      #  inputs:
+      #    connectionType: 'Azure Resource Manager'
+      #    azureSubscriptionEndpoint: 'aksdev-sp'
+      #    azureResourceGroup: 'ECORG3DSR-RG-AKSAPI001'
+      #    kubernetesCluster: 'ECO-API-DSR-001'
+      #    command: 'get'
+      #    arguments: 'all'
+      #    useClusterAdmin: true
 
