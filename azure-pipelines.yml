@@ -5,18 +5,27 @@ stages:
         variables:
           buildConfiguration: 'Release'
         pool:
-          name: 'Default'
+          name: 'ubuntu-latest'
         steps:
           - script: ./gradlew build
             name: build
-
-        #- task: Kubernetes@1
-        #  inputs:
-        #    connectionType: 'Azure Resource Manager'
-        #    azureSubscriptionEndpoint: 'aksdev-sp'
-        #    azureResourceGroup: 'ECORG3DSR-RG-AKSAPI001'
-        #    kubernetesCluster: 'ECO-API-DSR-001'
-        #    command: 'get'
-        #    arguments: 'all'
-        #    useClusterAdmin: true
-
+            
+  - stage: Deploy
+    jobs:
+      - deployment: 
+        pool:
+          name: 'Default'
+        environment: 'Dev'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: Kubernetes@1
+                  inputs:
+                    connectionType: 'Azure Resource Manager'
+                    azureSubscriptionEndpoint: 'aksdev-sp'
+                    azureResourceGroup: 'ECORG3DSR-RG-AKSAPI001'
+                    kubernetesCluster: 'ECO-API-DSR-001'
+                    command: 'get'
+                    arguments: 'all'
+                    useClusterAdmin: true
