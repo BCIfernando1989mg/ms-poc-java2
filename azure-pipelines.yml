@@ -9,6 +9,8 @@ jobs:
       enableProxy: false
       enableSastScan: true
       CheckmarxService: 'Checkmarx SAST'
+      fullTeamName: 'CxServer'
       enableDependencyScan: true
       dependencyServerURL: 'checkmarx sca'
+      scaTeam: 'CxServer'
       includeSource: true
